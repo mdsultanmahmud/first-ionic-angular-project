@@ -6,7 +6,7 @@
     </div>
     <div class="navbar__buttons">
       <ul>
-        @for(page of pages; track page){
+        @for(page of pages;track page){
         <li>
           <a [routerLink]="page.path">{{ page.name }}</a>
         </li>
@@ -16,31 +16,13 @@
   </div>
 </ion-header>
 <ion-content>
-  <!-- Banner Section  -->
-  <div class="banner__container">
-    <div class="banner__text">
-      <h1>
-        Elevate <br />
-        Your Home <br />
-        Aesthetics
-      </h1>
-      <p>
-        Shop the latest products at unbeatable prices! Discover top-quality
-        items, exclusive deals, and fast delivery—all in one place. Your
-        ultimate online shopping experience starts here!
-      </p>
-      <div class="btn__container">
-        <button routerLink="/products-list">buy now</button>
-        <button routerLink="/products-list">view products</button>
-      </div>
-    </div>
-    <div class="banner__img">
-      <img src="../../../../assets/banner.png" alt="" />
-    </div>
-  </div>
+  @if(isLoading){
 
-  <!-- Our Products Section  -->
+  <p>Loading Product data...</p>
+  }
 
+  <!-- Show Products  -->
+  @if(!isLoading && products.length){
   <div class="products__container">
     <h3>Our Products</h3>
     <div class="products">
@@ -64,4 +46,5 @@
       }
     </div>
   </div>
+  }
 </ion-content>

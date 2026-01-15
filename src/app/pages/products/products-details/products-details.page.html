@@ -1,0 +1,38 @@
+<!-- Navbar Section  -->
+<ion-header>
+  <div class="navbar__container">
+    <div class="navbar__title">
+      <p>Store App</p>
+    </div>
+    <div class="navbar__buttons">
+      <ul>
+        @for(page of pages; track page){
+        <li>
+          <a [routerLink]="page.path">{{ page.name }}</a>
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+</ion-header>
+<ion-content>
+  <!-- Loading State  -->
+  @if(isLoading){
+
+  <p>Loading Product Details...</p>
+  }
+
+  <!-- Product Render  -->
+  @if(product){
+  <div class="prdouct__container">
+    <div class="product__inner__container">
+      <img [src]="product.image" [alt]="product.title" />
+      <p>Name: {{product.title}}</p>
+      <p>Category: {{product.category}}</p>
+      <p>Rating: {{product.rating?.rate}}</p>
+      <p>Description: {{product.description}}</p>
+      <button (click)="addToCart(product)">Add To Cart</button>
+    </div>
+  </div>
+  }
+</ion-content>

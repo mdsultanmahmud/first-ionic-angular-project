@@ -1,0 +1,34 @@
+.prdouct__container {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-items: center;
+
+  .product__inner__container {
+    width: 500px;
+    height: auto;
+    color: #fff;
+    background-color: #b18b5e;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+
+    img {
+      width: 70%;
+      height: 200px;
+      margin: 0 auto;
+      margin-bottom: 2rem;
+      object-fit: contain;
+      display: block;
+    }
+
+    button {
+      background: white;
+      color: #b18b5e;
+      font-weight: 500;
+      padding: 0.8rem 1.2rem;
+      border-radius: 0.5rem;
+      margin: 3rem auto 0;
+      display: block;
+    }
+  }
+}

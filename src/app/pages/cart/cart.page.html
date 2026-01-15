@@ -1,0 +1,48 @@
+<!-- Navbar Section  -->
+<ion-header>
+  <div class="navbar__container">
+    <div class="navbar__title">
+      <p>Store App</p>
+    </div>
+    <div class="navbar__buttons">
+      <ul>
+        @for(page of pages; track page){
+        <li>
+          <a [routerLink]="page.path">{{ page.name }}</a>
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+</ion-header>
+<ion-content>
+  @if(!cartItems.length) {
+  <p>No products available in your cart</p>
+  }
+
+  <!-- Show Products  -->
+  @if(cartItems.length){
+  <div class="products__container">
+    <h3>Added Products</h3>
+    <div class="products">
+      @for(prod of cartItems; track prod){
+      <div class="products__card">
+        <img [src]="prod.image" alt="" />
+        <div class="text_area">
+          <p class="title">{{prod.title}}</p>
+          <div>
+            <p>Price: {{prod.price}}</p>
+            <p>Rating: {{prod.rating.rate}}</p>
+          </div>
+          <div class="btns">
+            <button (click)="removeProductFromCart(prod.id)">
+              Remove from Cart
+            </button>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+  }
+</ion-content>
