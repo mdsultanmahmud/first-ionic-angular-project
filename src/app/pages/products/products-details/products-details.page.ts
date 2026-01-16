@@ -7,11 +7,11 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
-import { ProductInterface } from 'src/app/services/interfaces';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
 import { finalize } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
+import { ProductModel } from 'src/app/store/models/product.model';
 
 @Component({
   selector: 'app-products-details',
@@ -29,15 +29,12 @@ import { CartService } from 'src/app/services/cart.service';
   ],
 })
 export class ProductsDetailsPage implements OnInit {
-  product: ProductInterface | null = null;
-  isLoading: boolean = false;
   private route = inject(ActivatedRoute);
-
-  // Product Service import
+  private cartService = inject(CartService);
   private productService = inject(ProductsService);
 
-  // Cart Service import
-  private cartService = inject(CartService);
+  product: ProductModel | null = null;
+  isLoading: boolean = false;
 
   constructor() {}
 
@@ -74,8 +71,8 @@ export class ProductsDetailsPage implements OnInit {
 
   // Add to cart products
 
-  addToCart(prod: ProductInterface) {
-    this.cartService.addToCart(prod);
+  addToCart(product: ProductModel) {
+    this.cartService.addToCart(product);
     console.log('prdouct added in your cart');
   }
 

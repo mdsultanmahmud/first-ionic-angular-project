@@ -7,9 +7,9 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
-import { ProductInterface } from 'src/app/services/interfaces';
 import { CartService } from 'src/app/services/cart.service';
 import { RouterModule } from '@angular/router';
+import { ProductModel } from 'src/app/store/models/product.model';
 
 @Component({
   selector: 'app-cart',
@@ -27,10 +27,9 @@ import { RouterModule } from '@angular/router';
   ],
 })
 export class CartPage implements OnInit {
-  // Initialize cart items as empty array
-  cartItems: ProductInterface[] = [];
-  // import cartService
   private cartService = inject(CartService);
+  // Initialize cart items as empty array
+  cartItems: ProductModel[] = [];
   constructor() {}
 
   ngOnInit() {
@@ -39,10 +38,15 @@ export class CartPage implements OnInit {
       // console.log('Our all cart Items: ', this.cartItems);
     });
   }
-
+  // Remove Single item
   removeProductFromCart(id: number) {
     this.cartService.removeItemFromCart(id);
     console.log('Product remove from cart!');
+  }
+
+  // Remove All Item
+  removeAllItem() {
+    this.cartService.clearCart();
   }
 
   // Menu Items

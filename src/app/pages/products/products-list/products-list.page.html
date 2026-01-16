@@ -26,20 +26,20 @@
   <div class="products__container">
     <h3>Our Products</h3>
     <div class="products">
-      @for(prod of products; track prod){
+      @for(product of products; track product){
       <div class="products__card">
-        <img [src]="prod.image" alt="" />
+        <img [src]="product.image" alt="" />
         <div class="text_area">
-          <p class="title">{{prod.title}}</p>
+          <p class="title">{{product.title}}</p>
           <div>
-            <p>Price: {{prod.price}}</p>
-            <p>Rating: {{prod.rating.rate}}</p>
+            <p>Price: {{product.price}}</p>
+            <p>Rating: {{product.rating.rate}}</p>
           </div>
           <div class="btns">
-            <button [routerLink]="['/products-details', prod.id]">
+            <button [routerLink]="['/products-details', product.id]">
               Details
             </button>
-            <button (click)="addToCart(prod)">Add To Cart</button>
+            <button (click)="addToCart(product)">Add To Cart</button>
           </div>
         </div>
       </div>

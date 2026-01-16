@@ -25,17 +25,17 @@
   <div class="products__container">
     <h3>Added Products</h3>
     <div class="products">
-      @for(prod of cartItems; track prod){
+      @for(product of cartItems; track product){
       <div class="products__card">
-        <img [src]="prod.image" alt="" />
+        <img [src]="product.image" alt="" />
         <div class="text_area">
-          <p class="title">{{prod.title}}</p>
+          <p class="title">{{product.title}}</p>
           <div>
-            <p>Price: {{prod.price}}</p>
-            <p>Rating: {{prod.rating.rate}}</p>
+            <p>Price: {{product.price}}</p>
+            <p>Rating: {{product.rating.rate}}</p>
           </div>
           <div class="btns">
-            <button (click)="removeProductFromCart(prod.id)">
+            <button (click)="removeProductFromCart(product.id)">
               Remove from Cart
             </button>
           </div>
@@ -43,6 +43,10 @@
       </div>
       }
     </div>
+  </div>
+  } @if(cartItems.length){
+  <div class="clear__btn">
+    <button (click)="removeAllItem()">Remove All Item</button>
   </div>
   }
 </ion-content>

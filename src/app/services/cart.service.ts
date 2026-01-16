@@ -1,24 +1,24 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ProductInterface } from './interfaces';
+import { ProductModel } from '../store/models/product.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private cartSubject = new BehaviorSubject<ProductInterface[]>([]);
+  private cartSubject = new BehaviorSubject<ProductModel[]>([]);
 
   // Protect cart
   cart$ = this.cartSubject.asObservable();
 
   // Get cart item
-  get getCartItems(): ProductInterface[] {
+  get getCartItems(): ProductModel[] {
     return this.cartSubject.value;
   }
 
   // Add to cart
-  addToCart(prod: ProductInterface) {
-    const updatedCart = [...this.cartSubject.value, prod];
+  addToCart(product: ProductModel) {
+    const updatedCart = [...this.cartSubject.value, product];
     this.cartSubject.next(updatedCart);
   }
 
