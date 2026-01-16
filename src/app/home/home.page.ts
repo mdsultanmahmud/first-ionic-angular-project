@@ -10,7 +10,7 @@ import {
 import { RouterModule } from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
 import { CartService } from 'src/app/services/cart.service';
-import { ProductInterface } from 'src/app/services/interfaces';
+import { ProductModel } from '../store/models/product.model';
 
 @Component({
   selector: 'app-home',
@@ -29,10 +29,10 @@ import { ProductInterface } from 'src/app/services/interfaces';
 })
 export class HomePage implements OnInit {
   private productService = inject(ProductsService);
-  products: ProductInterface[] = [];
-  loading = true;
-  // Cart Service import
   private cartService = inject(CartService);
+
+  products: ProductModel[] = [];
+  loading = true;
   pages = [
     { name: 'Home', path: '/' },
     { name: 'Products', path: '/products-list' },
@@ -42,6 +42,7 @@ export class HomePage implements OnInit {
   ngOnInit(): void {
     this.loadLimitedProducts();
   }
+
   loadLimitedProducts() {
     this.productService.getLimitedProducts(8).subscribe({
       next: (res) => {
@@ -58,9 +59,8 @@ export class HomePage implements OnInit {
   }
 
   // Add to cart products
-
-  addToCart(prod: ProductInterface) {
-    this.cartService.addToCart(prod);
+  addToCart(product: ProductModel) {
+    this.cartService.addToCart(product);
     console.log('prdouct added in your cart');
   }
 }

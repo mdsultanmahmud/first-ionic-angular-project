@@ -7,11 +7,11 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
-import { ProductInterface } from 'src/app/services/interfaces';
 import { ProductsService } from 'src/app/services/products.service';
 import { finalize } from 'rxjs';
 import { RouterModule } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
+import { ProductModel } from 'src/app/store/models/product.model';
 
 @Component({
   selector: 'app-products-list',
@@ -29,12 +29,12 @@ import { CartService } from 'src/app/services/cart.service';
   ],
 })
 export class ProductsListPage implements OnInit {
-  isLoading: boolean = false;
-  products: ProductInterface[] = [];
   productService = inject(ProductsService);
-
-  // Cart Service import
   private cartService = inject(CartService);
+
+  isLoading: boolean = false;
+  products: ProductModel[] = [];
+
   constructor() {}
 
   ngOnInit() {
@@ -63,9 +63,8 @@ export class ProductsListPage implements OnInit {
   }
 
   // Add to cart products
-
-  addToCart(prod: ProductInterface) {
-    this.cartService.addToCart(prod);
+  addToCart(product: ProductModel) {
+    this.cartService.addToCart(product);
     console.log('prdouct added in your cart');
   }
   // Menu Items
